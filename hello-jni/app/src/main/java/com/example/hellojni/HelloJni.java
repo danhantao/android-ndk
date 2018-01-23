@@ -35,6 +35,7 @@ public class HelloJni extends AppCompatActivity {
     /* A native method that is implemented by the
      * 'hello-jni' native library, which is packaged
      * with this application.
+     * java调用native
      */
     public native String  stringFromJNI();
 

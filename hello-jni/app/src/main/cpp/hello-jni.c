@@ -22,11 +22,18 @@
  * file located at:
  *
  *   hello-jni/app/src/main/java/com/example/hellojni/HelloJni.java
+ *   返回string类型
+ *   jstring java的string类型
  */
 JNIEXPORT jstring JNICALL
 Java_com_example_hellojni_HelloJni_stringFromJNI( JNIEnv* env,
                                                   jobject thiz )
 {
+/**
+ * 定义不同类型的宏
+ * __arm__
+ * 不同平台参数
+ */
 #if defined(__arm__)
     #if defined(__ARM_ARCH_7A__)
     #if defined(__ARM_NEON__)
@@ -39,7 +46,7 @@ Java_com_example_hellojni_HelloJni_stringFromJNI( JNIEnv* env,
       #if defined(__ARM_PCS_VFP)
         #define ABI "armeabi-v7a (hard-float)"
       #else
-        #define ABI "armeabi-v7a"
+        #define ABI "armeabi-v7a --- hello"
       #endif
     #endif
   #else
@@ -60,4 +67,6 @@ Java_com_example_hellojni_HelloJni_stringFromJNI( JNIEnv* env,
 #endif
 
     return (*env)->NewStringUTF(env, "Hello from JNI !  Compiled with ABI " ABI ".");
+// c++  代码调用
+//    return env->NewStringUTF("hello, I am from C++");
 }
